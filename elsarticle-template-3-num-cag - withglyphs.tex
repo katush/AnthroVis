@@ -180,7 +180,7 @@ Most of the visualizations were adopted from other research domains where their 
 AnthroVis tool was primarily designed for facial meshes but it is equally applicable to other types of meshes.
 As the evidence of this we provide the real case studies described in the evaluation section.
 They demonstrate the successful usage of our tool for different tasks performed by the forensic anthropologists -- spanning from the identification of persons (e.g., criminals) to the reconstruction of skeletal remains.
-The identification-related tasks involve mostly the database \linebreak[4] searching of similar meshes to the reference one. 
+The identification-related tasks involve mostly the database searching of similar meshes to the reference one. 
 In this process the techniques for comparison of multiple meshes are crucial.
 When more meshes satisfy the comparison conditions, then more detailed exploration has to be launched.
 Here methods for the pairwise comparison of the reference mesh with a selected similar mesh are crucial.  
@@ -219,14 +219,6 @@ Their approach uses the Hausdorff distance for the comparison.
 Similarly, also Scharnowski et al.~\cite{Scharnowski2014} presented their algorithm for comparative visualization of dynamically changing surfaces.
 Their algorithm, designed mainly for molecular surfaces, uses a deformable model approach to obtain a mapping relation between two surfaces.
 
-\begin{figure*}[tbh]
-	\centering
-  \includegraphics[width=1\linewidth]{pictures/pipeline1.png}
-  \caption{\label{fig:pipeline} Illustration of the workflow of forensic antropologists performing the comparison and exploration tasks on a input set of 3D meshes.}
-	\vspace{-2mm}
-\end{figure*}
-
-
 \subsection{Visual Surface Comparison}
 %Among the existing systems for comparison 3D data belong the 
 When comparing two surfaces, superimposition principle is often used.
@@ -236,7 +228,8 @@ Angle-based transparency~\cite{hummel2010iris} sets the transparency to the angl
 Born et al.~\cite{born2009illustrative} use depth changes and normal variation to detect silhouettes and modify transparency. 
 Another technique, which also adds surface contours to the image, is based on geodesic fragment neighbors search~\cite{carnecky2013smart}. 
 
-Other techniques \cite{interrante1997conveying,diewald2000anisotropic,weigle2005visualizing} combine superimposition with explicit encoding and introduce features such as curvature strokes and glyphs that indicate the principal curvature directions of surface.
+Other techniques \cite{interrante1997conveying,diewald2000anisotropic,weigle2005visualizing} combine superimposition with explicit encoding and introduce features such as curvature strokes and glyphs that indicate the principal curvature directions of surface. 
+Glyphs are also often combined with shadow casting, as shadows improve the understandability of surface positions~\cite{weigle2005visualizing}. 
 Similarly, the distance vectors can connect the corresponding points on two surfaces or indicate other measurements with their size and orientation~\cite{busking2011image}. 
 Simulation of colorful semitransparent fog filling the space between two surfaces can also show the observer the differences between 3D objects~\cite{busking2011image}.
 
@@ -251,6 +244,12 @@ A possible solution to these problems is the usage of cross-cut views.
 This approach is widely used in medical visualization for volumetric data -- for example CT scan images -- where a slice along a given plane is projected into 2D space~\cite{friese2011yadiv}. 
 A similar approach is the contouring of specific 3D object features followed by the projection of these contours into 2D space.
 This is often used when monitoring the temporal changes of a given feature, e.g., the width of a molecular tunnel~\cite{byska}.
+
+\begin{figure*}[tbh]
+	\centering
+  \includegraphics[width=1\linewidth]{pictures/pipeline.png}
+  \caption{\label{fig:pipeline1} Illustration of the workflow of forensic antropologists performing the comparison and exploration tasks on a input set of 3D meshes.}
+\end{figure*}
 
 Other examples of data simplification by color encoding include heat plots and dense pixel displays~\cite{byska,ivanisiev,zhai}. 
 In combination with interactive options such as thresholding, filtering, and data reorganization, they are very effective in discovering data relationships.
@@ -275,7 +274,7 @@ However, despite its broad scope it does not address some field specific tasks o
 In this section we describe the decisions influencing the design process of the AnthroVis tool and its individual parts.
 The tool was designed in a tight cooperation with the domain experts from forensic anthropology field.
 To better understand their workflow we will start with its description.
-The workflow illustrated in Figure ~\ref{fig:pipeline} deals with the tasks related to the comparison of two or more 3D meshes.
+The workflow illustrated in Figure ~\ref{fig:pipeline1} deals with the tasks related to the comparison of two or more 3D meshes.
 The whole process starts with the data acquisition.
 
 The data are acquired by stereoscopic imaging systems which provide high-poly meshes. 
@@ -314,9 +313,8 @@ As additional data are computed, a simple color map mapped on an average model i
 
 \begin{figure*}[htb]
 	\centering
-  \includegraphics[width=1.0\linewidth]{pictures/overview3.png}
-  \caption{\label{fig:overview}Overview of visualizations integrated in the AnthroVis tool. (a) Color map depicting the average difference between a set of models and the primary model mapped on this primary model. (b) Histogram showing the distribution of values in the used color map. (c) Cross-cut View showing the local shape and alignment of selected meshes using the cutting plane. (d) MatCol overview matrix showing the similarities between pairs of meshes. (e) Surface superimposition views with different enhancements depicting the comparison of the primary model with a selected model from the dataset.}
-\vspace{-2mm}
+  \includegraphics[width=1.0\linewidth]{pictures/overview.png}
+  \caption{\label{fig:overview}Overview of visualizations integrated in the AnthroVis tool. (a) Color map depicting the average difference between a set of models and the primary model mapped on this primary model. (b) Histogram showing the distribution of values in the used color map. (c) MatCol overview matrix showing the similarities between pairs of meshes. (d) Cross-cut View showing the local shape and alignment of selected meshes using the cutting plane. (e) Surface superimposition views with different enhancements depicting the comparison of the primary model with a selected model from the dataset.}
 \end{figure*}
 
 To support the tasks related to the N:N comparison, AnthroVis uses a matrix based visualization providing the users with an overview of similarities between all pairs of the input meshes.
@@ -335,7 +333,7 @@ The details of individual visualization methods were already presented by Furman
 \subsubsection{MatCol -- N:N Overview Matrix with Color Map}
 During the analysis process a lot of measurements are performed producing many numerical data, particularly in the case of N:N comparison.
 Displaying them in an understandable way and linking them with the original 3D data is crucial for understanding the similarities and differences between them.
-Therefore, we propose the MatCol overview matrix, consisting of two parts, the N:N overview matrix (Figure~\ref{fig:overview}d) and the color map with histogram (Figure~\ref{fig:overview}a,b). 
+Therefore, we propose the MatCol overview matrix, consisting of two parts, the N:N overview matrix (Figure~\ref{fig:overview}c) and the color map with histogram (Figure~\ref{fig:overview}a,b). 
 The overview matrix is based on the idea of interactive heat plots and presents the results of pairwise comparison within the input set of all meshes.
 Each matrix cell represents the value of similarity measurement between two meshes in the dataset.
 The similarity calculation between these meshes is based on the nearest neighbor matching of the mesh vertices.
@@ -366,7 +364,6 @@ The color assigned to each vertex of the average mesh is then computed from the 
 	\centering
   \includegraphics[width=0.9\linewidth]{pictures/cross.png}
   \caption{\label{fig:cross} (a,b,c) Three typical facial cuts used by anthropologists. The corresponding cross sections enable to compare contours of ten selected target meshes (black) with the reference mesh (red). (d) Localized color map linked with the variance vectors showing area surrounding the selected vector.}
-	\vspace{-2mm}
 \end{figure*}
 
 \subsubsection{CCV -- Cross-cut View}
@@ -414,8 +411,15 @@ This makes the position of surfaces easier to interpret.
 \item{\textbf{Intersection Contours}}
 Highlighting the intersections of models can reveal minor intersections that could be otherwise easily overlooked. 
 The contours are detected on the interfaces between the two meshes where they change their order with respect to the camera position (Figure~\ref{fig:overview} (e1)). 
+\item{\textbf{Shadow-Casting Curvature Glyphs}}
+It has been confirmed by several studies \cite{erens1993perception} that shadows aid the human perception of depth and shape.
+Therefore, we have chosen the shadow-casting glyphs as an indicator of the mutual position of surfaces (Figure~\ref{fig:overview} (e2)). 
+In addition to the position clue, the directions of minimal and maximal surface curvature are encoded into the glyph shape.
+For the placement of the glyphs, the surfaces are sampled with the Poisson-disc sampling.
+To rotate the glyph, the direction of the minimal and maximal curvature at the sampling points is computed using the normal averaging method adopted from~\cite{interrante1997conveying}.
+Finally, the shadow mapping proposed by Williams~\cite{williams1978casting} is applied.
 \item{\textbf{Fog Simulation}}
-This technique simulates a partially transparent volume (fog) filling the space between the two surfaces and assigns it a color different from the colors used for the individual surfaces (Figure~\ref{fig:overview} (e2,3)). 
+This technique simulates a partially transparent volume (fog) filling the space between the two surfaces and assigns it a color different from the colors used for the individual surfaces (Figure~\ref{fig:overview} (e4,5)). 
 The aim of this method is to clearly indicate the differences between the two surfaces.
 The principle of this method is the following.
 Lets suppose that the outer surface is nearly completely transparent.
@@ -448,22 +452,24 @@ This way the user selects \textit{n} meshes (10 in our case) for further compari
 For the in-depth analysis, cross-cut visualizations were first employed (see Figure \ref{fig:cross}).
 This interactive visualization enables the expert to observe the differences between the scrutinized meshes in cross-section cuts corresponding to three essential anatomical body planes (frontal, sagittal, and transversal) or other optional planes. 
 
-Figure \ref{fig:case1} (1) shows an example of a comparison between the reference scan and one of the most similar target faces. 
+Figure \ref{fig:case1} (a,b) shows an example of a comparison between the reference scan and one of the most similar target faces. 
 
 \begin{figure}[htb]
 	\centering
-  \includegraphics[width=0.9\linewidth]{pictures/case1.png}
-  \caption{\label{fig:case1}Comparison between two meshes using (a) color map and (b) fog visualization  that shows the most significant differences between the input meshes.}
+  \includegraphics[width=1.0\linewidth]{pictures/case1.png}
+  \caption{\label{fig:case1}Comparison between two meshes using (a,c) color map and (b,d) fog visualization  that shows the most significant differences between the input meshes.}
 \end{figure}
 
 For better comparison, the traditionally used color map is also shown.
 The color map depicts the main differences located in the supraorbital region. 
 However, our proposed visualizations are more successful in demonstrating also other important morphological differences, such as the apparent difference in shape of noses.
  
-As expected, the most similar meshes were those capturing the faces of the specimen in two different time steps (see Figure \ref{fig:case1} (2)).  
+As expected, the most similar meshes were those capturing the faces of the specimen in two different time steps (see Figure \ref{fig:case1} (c,d)).  
 
 The color map does not reveal noticeable differences because this method is not suitable for revealing minor differences.
 However, our fog-present superimposition technique shows that although the compared meshes are very similar, they cannot be considered identical. Moreover, the sources of variations can be localized precisely using fog, i.e., in the presented case the tip of the nose, chin, and width of the face.
+
+
 
 \subsection{Case 2 -- Facial Identification}
 The second example originates in cases where facial identification is derived from an eyewitness's description of a perpetrator, and frequently combined with the construction of a facial composite. 
@@ -479,7 +485,7 @@ The conclusions are supported by the ability to visualize individual compared pa
 
 \begin{figure}[htb]
 	\centering
-  \includegraphics[width=0.9\linewidth]{pictures/case2.png}
+  \includegraphics[width=1\linewidth]{pictures/case2a.png}
   \caption{\label{fig:case2}Comparison of set of 39 faces of 13 individuals, each present three times with various facial changes. (a) Original mesh compared with mesh with interchanged nose, mouth, and chin. (b) Original mesh compared with mesh with interchanged eyes, nose, and chin.}
 \end{figure}
 
@@ -497,7 +503,7 @@ The results are summarized in Figure \ref{fig:case3}.
 
 \begin{figure}[htb]
 	\centering
-  \includegraphics[width=0.9\linewidth]{pictures/case3.png}
+  \includegraphics[width=1\linewidth]{pictures/case3.png}
   \caption{\label{fig:case3} (a) Comparison between manually (yellow) and virtually (blue) reconstructed mandible from fragmentary skeletal remains. (b) The difference is highlighted using fog. (c) Cross-cut view. (d) Color map.}
 \end{figure}
 
@@ -516,6 +522,9 @@ Once the initial assessment is performed, however, anthropologists tend to switc
 
 It also specifies the boundaries of more localized differences. 
 The proper demarcation is particularly important when an expert has to decide whether the observed inconsistencies are due to technical limitations and the two 3D images correspond to the same individual or they represent differences on which the same identity can be undoubtedly rejected. 
+The shadow-casting curvature glyphs were assessed as the least useful of the developed techniques. 
+Glyphs represent a technique that deviates significantly from the visualization methods utilized traditionally in the field of anthropology or forensic anthropology (i.e., color maps or cross-sections). 
+Therefore, for anthropologists the technique was initially rather confusing and they had the tendency to turn to other, more intuitive, visualizations. 
  
 The multiple comparison of faces, previously lacking a suitable technique for the visual exploration, is supported by cross-cuts and the overview matrix. 
 The overview matrix was shown to be extremely helpful when searching for the most similar faces in the dataset or when comparing the specimen with other meshes from the dataset. 
