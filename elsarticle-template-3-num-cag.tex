@@ -114,7 +114,8 @@
 %% \author[label1,label2]{<author name>}
 %% \address[label1]{<address>}
 %% \address[label2]{<address>}
-\author{Katar\'{i}na Furmanov\'{a}, Petra Urbanov\'{a}, and Barbora Kozl\'{i}kov\'{a}}
+%\author{Katar\'{i}na Furmanov\'{a}, Petra Urbanov\'{a}, and Barbora Kozl\'{i}kov\'{a}}
+\author{Submission ID 1041}
 \address{}
 
 
@@ -153,9 +154,9 @@ However, tools applicable for facial image identification in forensic anthropolo
 In order to quantify the extent of similarity between compared meshes they produce large sets of numerical results. 
 As the amount of data can be overwhelming, it becomes important to design various visualization methods, which can facilitate the decision-making process.
 
-Traditionally, when dealing with 3D meshes, anthropologists are accustomed to visualize morphological variations by using color maps mapped onto a selected mesh.
+Traditionally, when dealing with 3D meshes, anthropologists are accustomed with visualizing morphological variations by using color maps mapped onto a selected mesh.
 This representation allows uncovering and localizing dissimilarities between aligned meshes. 
-From the methodological point of view, however, the color maps suffer from several limitations, which can lead to a misleading interpretation.
+From the methodological point of view, however, the color maps suffer from several limitations, which can result in a misleading interpretation.
 First, anthropologists rely mostly on the rainbow coloring scheme with uneven distribution of colors. 
 This can easily lead to situations where the areas with a small difference are marked with the same color leaving the differences visually unrecognizable.
 Second, in some cases the edge areas on the 3D meshes may differ quite significantly (see Figure~\ref{fig:colormap}).
@@ -164,15 +165,15 @@ Then the distribution of colors in the color map reflects this highly localized 
 \begin{figure}[htb]
 	\centering
   \includegraphics[width=0.9\linewidth]{pictures/colormap.png}
-  \caption{\label{fig:colormap} Example of visualization of differences between two meshes using the color map. In case when the boundary areas of the meshes differ significantly (here on the forehead), it leads to uneven distribution of colors. In consequence the small differences are invisible.}
+  \caption{\label{fig:colormap} Example of visualization of differences between two meshes using the color map. In case when the boundary areas of the meshes differ significantly (here on the forehead), it leads to uneven distribution of colors. In consequence, the small differences are invisible.}
 \end{figure}
 
 The most straightforward suggestion for improvement would be to remove the parts of the meshes which are significantly different because these often cause the errors on the boundary of the meshes.
 However, in the case of facial meshes this removal cannot be performed automatically because some of these differences have significant impact on the comparison.
-An example of such situation is depicted in Figure~\ref{fig:colormap} where the most different parts of the compared meshes are located close to the boundary but they represent the differences in the height of the forehead.
+An example of such situation is depicted in Figure~\ref{fig:colormap}, where the most different parts of the compared meshes are located close to the boundary but they represent the differences in the height of the forehead.
 Removing this part will lead to significant and undesirable changes of the input facial model.
 
-In this paper we propose a novel AnthroVis tool for visual analysis of 3D mesh ensembles, which aims to overcome these problems.
+In this paper we propose AnthroVis tool for visual analysis of 3D mesh ensembles, which aims to overcome these problems.
 AnthroVis tool was designed in tight collaboration with the domain experts who also belong to the group of the target users.
 In the design we emphasized namely the usage of the proposed tool in their workflow. 
 The tool enables the users to compare and match 3D meshes by using an interlinked set of specific visualizations.
@@ -189,7 +190,7 @@ These task require namely methods for comparison of two meshes.
 
 The paper is organized as follows. 
 Section \ref{related} contains a survey of existing approaches to comparative visualization of meshes and their visual analysis.
-Section \ref{overview} provides the readers with the more detailed overview of our proposed tool and its design rationale.
+Section \ref{overview} provides the readers with more detailed overview of our proposed tool and its design rationale.
 This involves also the description of the workflow of the domain experts and points out the main limitations of the current solutions.
 In Section \ref{exface} we introduce our tool, its main features, and design and implementation details of the proposed visualizations.
 Our results in Section \ref{results} are presented in a form of real case studies which were performed directly by the domain experts.
@@ -203,7 +204,7 @@ Research in the area of mesh comparison is mostly focusing on technical aspects 
 This section therefore starts with a survey of existing approaches and algorithms for mesh comparison.
 However, in terms of forensic anthropology, the output of such algorithms needs to be further explored by the experts.
 Our tool aims to provide means for such exploration through several interactively linked visualizations.
-Thus, in the second and third part of this section we focus on the description of the existing approaches related to our proposed visualization methods and visual analysis of mesh or multi-mesh comparison.
+Thus, in the following we focus on the description of the existing approaches related to our proposed visualization methods and visual analysis of mesh or multi-mesh comparison.
 
 \subsection{Mesh Comparison}
 When dealing with 3D data, the comparative algorithms can be divided into two categories: local feature based and holistic algorithms.
@@ -212,7 +213,7 @@ Local feature based algorithms are focused on detecting and matching local featu
 Other feature based algorithms use patches \cite{guo2016ei3d,chua20003d} or curves \cite{bronstein2005three} as the bases for comparison. 
 
 In case of holistic algorithms, the entire mesh is taken into account.
-Here belong surface matching algorithms, e.g., Iterative Closest Normal Point method \cite{mohammadzade2013iterative}, Hausdorff distance based algorithms \cite{huttenlocher1993comparing,pan2003automatic}, algorithms based on curvature analysis \cite{lei20093d,tanaka1998curvature}, canonical forms \cite{bronstein2007expression} or spherical harmonic features \cite{liu2013learning}.
+Here belong surface matching algorithms, e.g., Iterative Closest Normal Point method \cite{mohammadzade2013iterative}, Hausdorff distance based algorithms \cite{huttenlocher1993comparing,pan2003automatic}, algorithms based on curvature analysis \cite{lei20093d,tanaka1998curvature}, canonical forms \cite{bronstein2007expression}, or spherical harmonic features \cite{liu2013learning}.
 
 Some of the existing approaches focus on the comparison of dynamic meshes, such as the algorithm presented by Vasa and Skala~\cite{Vasa2006}.
 Their approach uses the Hausdorff distance for the comparison.
@@ -259,23 +260,23 @@ In combination with interactive options such as thresholding, filtering, and dat
 The techniques mentioned above are usable as standalone methods for exploration of 3D data.
 However, when dealing with large data-sets and wide variety of tasks, such as the ones posed by the forensic experts, a single view of data is not enough for thorough analysis.
 
-Schmidt et al.~\cite{ymca} introduce a toolbox for mesh comparison.
-Their tool detects hotspots -- places with the biggest variability and consists of several interconnected visualizations, such as color maps, lens view and parallel coordinates view for comparison of meshes at detected hotspots.
+Schmidt et al.~\cite{ymca} introduced a toolbox for mesh comparison.
+Their tool detects hotspots -- places with the biggest variability, and consists of several interconnected visualizations, such as color maps, lens view, and parallel coordinates view for comparison of meshes at detected hotspots.
 The tool is limited only to many-to-one mesh comparison scenario.
 
 Silva et al.~\cite{Silva2005} published their PolyMeCo tool for comparing polygonal meshes. 
-This tool focuses on the presentation of the compared meshes but similarly to the other existing approaches it uses the color map with the rainbow coloring scheme to convey the differences.
+This tool focuses on the presentation of the compared meshes but, similarly to the other existing approaches, it uses the color map with the rainbow coloring scheme to convey the differences.
 
-Stalling et al.~\cite{stalling200538} offer another tool dedicated to visual data analysis, targeting the general field of life sciences. 
-It supports wide range of tasks such as image segmentation, geometry reconstruction, flow visualizations or statistical data analysis.
-However, despite its broad scope it does not address some field specific tasks of forensic anthropology, such as feature detection.
+Stalling et al.~\cite{stalling200538} offered another tool dedicated to visual data analysis, targeting the general field of life sciences. 
+It supports wide range of tasks, such as image segmentation, geometry reconstruction, flow visualizations, or statistical data analysis.
+However, despite its broad scope, it does not address some field specific tasks of forensic anthropology, such as feature detection.
 
 %-------------------------------------------------------------------------
 \section{AnthroVis Design Rationale} \label{overview}
 In this section we describe the decisions influencing the design process of the AnthroVis tool and its individual parts.
-The tool was designed in a tight cooperation with the domain experts from forensic anthropology field.
-To better understand their workflow we will start with its description.
-The workflow illustrated in Figure ~\ref{fig:pipeline} deals with the tasks related to the comparison of two or more 3D meshes.
+The tool was designed in tight cooperation with the domain experts from forensic anthropology field.
+To better understand their workflow, we will start with its description.
+The workflow illustrated in Figure~\ref{fig:pipeline} deals with the tasks related to the comparison of two or more 3D meshes.
 The whole process starts with the data acquisition.
 
 The data are acquired by stereoscopic imaging systems which provide high-poly meshes. 
@@ -285,7 +286,7 @@ These parts are either insignificant to experts or they contain a distorted geom
 Hence, the final 3D images are trimmed to demarcate the facial area only.
 
 The next step of the workflow performs the alignment and normalization of the meshes. 
-This is done automatically, using an Iterative Closest Point algorithm~\cite{besl1992method} for minimizing the distance between the input meshes.
+This is done automatically, using the Iterative Closest Point algorithm~\cite{besl1992method} for minimizing the distance between the input meshes.
 The alignment represents an important step in the data analysis, as it directly affects its outcome.
 However, anomalies in the data may cause undesirable distortions of results. 
 As erroneous performance at this stage may lead to failure of the entire analysis, the verification of alignment and normalization results is imperative.
@@ -298,18 +299,18 @@ The second group deals with matching an image against a database of images in or
 Finally, tasks related to matching two images in order to identify or reject the person's identity form the third group.
 From these tasks stem the three possible approaches to facial comparison -- analyzing a set of models (N:N), comparison of one model against a dataset (1:N), and comparison of two facial models (1:1). 
 
-In 1:1 comparison, a typical goal is to determine whether the two models depict the same person. 
+In 1:1 comparison, a typical goal is to determine whether two models depict the same person. 
 Here a simple superimposition of aligned models may provide the idea leading to the success of this operation.
 However, such an approach is not feasible for multiple model comparison.
 
 1:N comparison essentially extends the 1:1 comparison by matching a primary mesh against a set of secondary meshes. 
-In forensic anthropology this is performed in cases where multiple facial meshes of the same individual should be matched (e.g., in various life stages).
-The second example can be the case when more than one suspect is compared against the evidence of a perpetrator recorded at a crime scene. 
+In forensic anthropology this is performed in cases, when multiple facial meshes of the same individual should be matched (e.g., in various life stages).
+The second example can be the case, when more than one suspect is compared against the evidence of a perpetrator recorded at a crime scene. 
 Alternatively, two models are compared and the differences are quantified in order to specify a causative agent operating in facial differences, e.g., age-induced changes, sex-related differences in human face, or facial variations between relatives.
 
 Ultimately, the N:N multiple mesh comparison is based on pairwise comparison of models in a dataset. 
 Although in certain scenarios it also leads to 1:1 comparison, it typically starts with a different premise.
-For instance, an exploitation of global and local variability within a sample, or a detection of outliers may serve as exemplary cases.
+For instance, an exploitation of global and local variability within a sample or a detection of outliers may serve as exemplary cases.
 As additional data are computed, a simple color map mapped on an average model is not sufficient to visualize such complex results.
 
 \begin{figure*}[htb]
@@ -328,15 +329,15 @@ The surface superimposition is supported by several visual enhancement, such as 
 In the following section these proposed visualizations will be described in detail.
 
 \section{Visualization Methods} \label{exface}
-To support the above mentioned tasks performed by the forensic anthropologists we propose several visualization techniques and combine them in our unique system for visual analysis of facial data.
+To support the above mentioned tasks performed by the forensic anthropologists, we propose several visualization techniques and combine them in our unique system for visual analysis of facial data.
 Figure \ref{fig:overview} shows the overview of the proposed visualizations integrated in the AnthroVis tool.
 The details of individual visualization methods were already presented by Furmanova~\cite{Furmanova2015}.
 
 \subsubsection{MatCol -- N:N Overview Matrix with Color Map}
-During the analysis process a lot of measurements are performed producing many numerical data, particularly in the case of N:N comparison.
+During the analysis process, a lot of measurements are performed producing many numerical data, particularly in the case of N:N comparison.
 Displaying them in an understandable way and linking them with the original 3D data is crucial for understanding the similarities and differences between them.
 Therefore, we propose the MatCol overview matrix, consisting of two parts, the N:N overview matrix (Figure~\ref{fig:overview}d) and the color map with histogram (Figure~\ref{fig:overview}a,b). 
-The overview matrix is based on the idea of interactive heat plots and presents the results of pairwise comparison within the input set of all meshes.
+The MatCol matrix is based on the idea of interactive heat plots and presents the results of pairwise comparison within the input set of all meshes.
 Each matrix cell represents the value of similarity measurement between two meshes in the dataset.
 The similarity calculation between these meshes is based on the nearest neighbor matching of the mesh vertices.
 The acquired distances between the vertices are then statistically processed, depending on the aim of the analysis.
@@ -357,8 +358,8 @@ To better perceive the variability in the input dataset, the matrix is also acco
 The N:N overview matrix is further extended by the color map view displaying the average mesh computed from the input dataset. 
 This view helps the user to localize the areas with significant differences directly on the mesh.
 The average mesh is computed in the following way.
-For each vertex of a user selected reference mesh (one mesh form the analyzed dataset) the nearest neighbor vertices of other meshes are found.
-Then a displacement vector is computed from all vectors between the corresponding vertices from the reference mesh and the remaining meshes from the dataset and the reference mesh is modified by the displacement vectors.
+For each vertex of a user selected reference mesh (one mesh form the analyzed dataset), the nearest neighbor vertices of other meshes are found.
+Then, a displacement vector is computed from all vectors between the corresponding vertices from the reference mesh and the remaining meshes from the dataset and the reference mesh is modified by the displacement vectors.
 This process is repeated iteratively to yield better results and the number of iterations can be defined by the user.
 The color assigned to each vertex of the average mesh is then computed from the distance to its corresponding vertices in the same way as the values in the N:N overview matrix.
 
