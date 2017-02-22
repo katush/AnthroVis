@@ -409,7 +409,7 @@ Therefore, we decided to use the superimposition of the aligned meshes supported
 \begin{itemize}
 \item{\textbf{Transparency}} 
 Transparency modulation can help to solve the problems with occlusion that is one of the most common issues when dealing with 3D models. 
-In our case we split the surfaces of models into two categories with respect to the camera position -- the model surface closest to the camera is classified as the \textit{outer surface}, while the surface behind it is classified as the \textit{inner surface}.
+In our case we split the surfaces of models into two categories with respect to the camera position -- the model surface closest to the camera is classified as the \textit{outer surface}, while the surface behind is classified as the \textit{inner surface}.
 We then keep the inner surface opaque, while making the outer surface transparent.
 This makes the position of surfaces easier to interpret.
 \item{\textbf{Intersection Contours}}
@@ -423,8 +423,8 @@ Lets suppose that the outer surface is nearly completely transparent.
 In places where the surfaces are close to each other, the thin layer of fog does not occlude the inner surface.
 However, with the growing distance between surfaces the opacity of the fog accumulates.
 So in places with larger surface distances the inner surface can be completely covered by the fog. 
-In this case the distance between the \textit{inner} and \textit{outer} surfaces is computed along the viewing direction.
-The amount of accumulated fog is proportional on this distance, therefore the whole visualization is view-dependent.
+In this case, the distance between the \textit{inner} and \textit{outer} surfaces is computed along the viewing direction.
+The amount of accumulated fog is proportional to this distance, therefore the whole visualization is view-dependent.
 In AnthroVis it is also possible to remove the surfaces and show only the fog as an indicator of the volume between these surfaces. 
 By interactive manipulation with the meshes, this method can reveal the local differences that would not be visible in a color map.
 \end{itemize}
@@ -438,7 +438,7 @@ The case studies were conducted directly by the experts from forensic anthropolo
 
 \subsection{Case 1 -- Database Screening and Face Comparisons}
 The first case study focuses on a task performed on a daily basis in forensic anthropological casework. 
-In order to conduct facial image analysis on forensic evidence a pre-screening with an image database is frequently performed prior to image comparison. 
+In order to conduct facial image analysis on forensic evidence, a pre-screening with an image database is frequently performed prior to image comparison. 
 This step establishes a set of potential matches for the following in-depth image analysis.
 In the present case, a 3D facial scan of $30$-year old male was compared against a database of $501$ 3D faces (a fraction retrieved from The Fidentis 3D Face Database \cite{F3DFD}) in order to select $10$ target faces for further one to one observations.
 The dataset composed of $500$ meshes captured from different individuals while a single mesh represented the primary subject recorded two years prior to the analysis. The ultimate goal was to match the primary subject with its corresponding 3D scan included in the database and at the same time to reject that no other scan could be identified as the primary subject. 
@@ -473,7 +473,7 @@ Two sets of modifications were created.
 In the first step, a single facial component (e.g., nose, chin) was modified using a database of 3D facial components. 
 In the next step, additional two components were further switched. 
 Altogether, $39$ facial scans were processed using the N:N form of comparison. 
-The results were visualized using the developed overview matrix (see Figure \ref{fig:case2}).
+The results were visualized using the developed MatCol matrix (see Figure \ref{fig:case2}).
 
 It is more that evident that the pairwise comparisons corresponding to the intra-individual scans with the original and modified facial components placed by the plot diagonal exhibit a lower degree of variations than the remaining inter-individual comparisons.
 The conclusions are supported by the ability to visualize individual compared pairs using either color maps or the additional newly developed techniques. 
@@ -510,7 +510,7 @@ This is particularly apparent from the transparent superimposed meshes with fog 
 The domain experts confirmed that the AnthroVis tool and its interactively linked visualization techniques can facilitate the everyday decision-making in examining 3D digital evidence in forensic anthropology. 
 The traditional approach utilizing color maps, although considered an advanced visualization tool in forensic and biological sciences (e.g., \cite{urbanova2015testing}), has very limited possibilities, particularly while comparing large datasets of 3D facial meshes.
 
-The domain experts sorted iur visualization techniques by priority in the facial image analysis. 
+The domain experts sorted our visualization techniques by priority in the facial image analysis. 
 The color maps were evaluated as beneficial in cases where the primary goal was to display/evaluate initial basic morphological variations between two faces. 
 %As it is one of the traditional techniques for anthropologists, it ranks as the first visualization to be used. 
 Once the initial assessment is performed, however, anthropologists tend to switch to the surface superimposition and the combination of fog and transparent superimposition (in that order), which give a better understanding on minor, local differences between meshes. 
@@ -525,7 +525,7 @@ Like the anatomical plane, the cross-cuts provide a common method of communicati
 
 \section{Conclusion and Future Work} \label{conclusion}
 In this paper, we proposed several visualization methods filling the gaps in the visual exploration of 3D forensic evidence.
-Furthermore we proposed an interactive visual analysis tool integrating all proposed visualizations, which covers the current workflow of anthropologists performing these tasks as much as possible.
+Furthermore, we proposed an interactive visual analysis tool integrating all proposed visualizations, which covers the current workflow of anthropologists performing these tasks as much as possible.
 The tool as well as the visualizations were tested on real cases and confronted with the currently available techniques. 
 The testing first aimed to count pros and cons of the traditional color map approach, and then the newly proposed visualization techniques were scrutinized accordingly by forensic anthropologists. 
 The evaluation performed by the domain experts revealed not only the advantages of the proposed methods but also their drawbacks, which form possible extensions for the future work. 
