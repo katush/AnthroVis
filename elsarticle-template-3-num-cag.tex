@@ -1,4 +1,4 @@
-%% This is file `elsarticle-template-3-num.tex',
+	%% This is file `elsarticle-template-3-num.tex',
 %%
 %% Copyright 2009 Elsevier Ltd
 %%
@@ -114,9 +114,12 @@
 %% \author[label1,label2]{<author name>}
 %% \address[label1]{<address>}
 %% \address[label2]{<address>}
-%\author{Katar\'{i}na Furmanov\'{a}, Petra Urbanov\'{a}, and Barbora Kozl\'{i}kov\'{a}}
-\author{Submission ID 1041}
-\address{}
+\author[fi]{Katar\'{i}na Furmanov\'{a}}
+\author[ant]{Petra Urbanov\'{a}} 
+\author[fi]{Barbora Kozl\'{i}kov\'{a}}
+%\author{Submission ID 1041}
+\address[fi]{Faculty of Informatics, Masaryk University, Brno, Czech Republic}
+\address[ant]{Faculty of Science, Masaryk University, Brno, Czech Republic}
 
 
 \begin{abstract}
@@ -137,14 +140,14 @@ Digital approaches to shape comparison and analysis play a very important role i
 %%
 %% Start line numbering here if you want
 %%
-\linenumbers
+%\linenumbers
 
 
 
 %% main text
 \section{Introduction}
 In the framework of forensic anthropology, experts are presented with a vast range of tasks, spanning from assessing skeletal remains to identifying living persons from photographs or surveillance videos. 
-Advances in 3D technologies, namely those related to recording of spatial images, open new possibilities for multiple areas of forensic anthropological expertize.
+Advances in 3D technologies, namely those related to recording of spatial images, open new possibilities for multiple areas of forensic anthropological expertise.
 Generally, by capturing 3D meshes of objects, anthropologists are presented with depth information, which allows a novel insight into recorded visual data. 
 Under proper conditions, e.g., an adequate mesh resolution, high-quality texture, or precise geometry, 3D spatial data have been shown to yield highly accurate and reliable results, admissible even under the scrutiny of various legal systems \cite{urbanova2015testing}.
 
@@ -170,7 +173,7 @@ Then the distribution of colors in the color map reflects this highly localized 
 
 The most straightforward suggestion for improvement would be to remove the parts of the meshes which are significantly different because these often cause the errors on the boundary of the meshes.
 However, in the case of facial meshes this removal cannot be performed automatically because some of these differences have significant impact on the comparison.
-An example of such situation is depicted in Figure~\ref{fig:colormap}, where the most different parts of the compared meshes are located close to the boundary but they represent the differences in the height of the forehead.
+An example of such a situation is depicted in Figure~\ref{fig:colormap}, where the most different parts of the compared meshes are located close to the boundary but they represent the differences in the height of the forehead.
 Removing this part will lead to significant and undesirable changes of the input facial model.
 
 In this paper we propose AnthroVis tool for visual analysis of 3D mesh ensembles, which aims to overcome these problems.
@@ -190,7 +193,7 @@ These task require namely methods for comparison of two meshes.
 
 The paper is organized as follows. 
 Section \ref{related} contains a survey of existing approaches to comparative visualization of meshes and their visual analysis.
-Section \ref{overview} provides the readers with more detailed overview of our proposed tool and its design rationale.
+Section \ref{overview} provides the readers with a more detailed overview of our proposed tool and its design rationale.
 This involves also the description of the workflow of the domain experts and points out the main limitations of the current solutions.
 In Section \ref{exface} we introduce our tool, its main features, and design and implementation details of the proposed visualizations.
 Our results in Section \ref{results} are presented in a form of real case studies which were performed directly by the domain experts.
@@ -241,7 +244,7 @@ Other techniques \cite{interrante1997conveying,diewald2000anisotropic,weigle2005
 Similarly, the distance vectors can connect the corresponding points on two surfaces or indicate other measurements with their size and orientation~\cite{busking2011image}. 
 Simulation of colorful semitransparent fog filling the space between two surfaces can also show the observer the differences between 3D objects~\cite{busking2011image}.
 
-Among techniques falling into the category of explicit encoding belong techniques based on the color mapping. 
+Among techniques falling into the category of explicit encoding belong techniques based on color mapping. 
 These methods are often used as the default visualization methods in many applications, including software tools for surface comparison~\cite{CCompare,ymca}, where color is mapped onto the surface of compared 3D meshes. 
 
 Zhou and Pang~\cite{Zhou2001} presented a system for comparing surface meshes based on different distance metrics and mapped the results onto specific visual representations.
@@ -333,7 +336,7 @@ To support the above mentioned tasks performed by the forensic anthropologists, 
 Figure \ref{fig:overview} shows the overview of the proposed visualizations integrated in the AnthroVis tool.
 The details of individual visualization methods were already presented by Furmanova~\cite{Furmanova2015}.
 
-\subsubsection{MatCol -- N:N Overview Matrix with Color Map}
+\subsection{MatCol -- N:N Overview Matrix with Color Map}
 During the analysis process, a lot of measurements are performed producing many numerical data, particularly in the case of N:N comparison.
 Displaying them in an understandable way and linking them with the original 3D data is crucial for understanding the similarities and differences between them.
 Therefore, we propose the MatCol overview matrix, consisting of two parts, the N:N overview matrix (Figure~\ref{fig:overview}d) and the color map with histogram (Figure~\ref{fig:overview}a,b). 
@@ -358,7 +361,7 @@ To better perceive the variability in the input dataset, the matrix is also acco
 The N:N overview matrix is further extended by the color map view displaying the average mesh computed from the input dataset. 
 This view helps the user to localize the areas with significant differences directly on the mesh.
 The average mesh is computed in the following way.
-For each vertex of a user selected reference mesh (one mesh form the analyzed dataset), the nearest neighbor vertices of other meshes are found.
+For each vertex of a user selected reference mesh (one mesh from the analyzed dataset), the nearest neighbor vertices of other meshes are found.
 Then, a displacement vector is computed from all vectors between the corresponding vertices from the reference mesh and the remaining meshes from the dataset and the reference mesh is modified by the displacement vectors.
 This process is repeated iteratively to yield better results and the number of iterations can be defined by the user.
 The color assigned to each vertex of the average mesh is then computed from the distance to its corresponding vertices in the same way as the values in the N:N overview matrix.
@@ -370,7 +373,7 @@ The color assigned to each vertex of the average mesh is then computed from the 
 	\vspace{-3mm}
 \end{figure*}
 
-\subsubsection{CCV -- Cross-cut View}
+\subsection{CCV -- Cross-cut View}
 The MatCol view provides an overview of N:N analysis of models, which is beneficial for the assessment and filtering of the results. 
 However, it does not provide a way to compare the shapes of individual models in the set.
 For this purpose we propose a cross-cut view (Figure~\ref{fig:cross}).
@@ -394,9 +397,9 @@ The selection of a distance vector leads to the selection of the neighborhood of
 This allows better understanding of the local variability.
 
 Via the selection of secondary intersection contour, the CCV is further linked with our SurfSIM surface superimposition visualization for comparing pairs of meshes in a 1:1 manner. 
-This enables the detailed exploration of differences between the reference and a given target meshes. 
+This enables the detailed exploration of differences between the reference and given target meshes. 
 
-\subsubsection{SurfSIM -- Surface Superimposition Method}
+\subsection{SurfSIM -- Surface Superimposition Method}
 The set of the visualization techniques used for the 1:1 comparison in AnthroVis was adopted from the work of Busking et al.~\cite{busking2011image}.
 They proposed a set of techniques for comparison of intersecting surfaces and tested them on medical images.
 In close cooperation with forensic anthropologists we carefully selected those techniques which can be successfully adopted to their meshes as well.
@@ -534,9 +537,9 @@ The evaluation performed by the domain experts revealed not only the advantages 
 It was suggested that the fog simulation would be more beneficial if it was view independent. 
 Finally, concerning the cross sections, it was suggested to add the option of displaying absolute variability values, as opposed to currently used relative ones, which take into account the orientation of vectors.
 
-%\section{}
-%\label{}
-
+\section{Acknowledgements}
+\label{ackno}
+TODO!!!!!
 
 %\section{}
 %\label{}
