@@ -253,11 +253,16 @@ The resulting representations are of varying quality with respect to different l
 Even with so many visual enhancements at hand, displaying large sets of 3D data at once is ill-advised, due to the high complexity of images and a lot of visual clutter. 
 A possible solution to these problems is the usage of cross-cut views. 
 This approach is widely used in medical visualization for volumetric data -- for example CT scan images -- where a slice along a given plane is projected into 2D space~\cite{friese2011yadiv}. 
-A similar approach is the contouring of specific 3D object features followed by the projection of these contours into 2D space.
-This is often used when monitoring the temporal changes of a given feature, e.g., the width of a molecular tunnel~\cite{byska}.
+A similar approach is the contouring of specific 3D object features.
+Demir et al.~\cite{demir2016screen} present a visualization technique for
+comparing 3D scalar field ensembles based on the idea of rendering silhouettes instead of solid surfaces.
+They provide several mechanisms for more detailed exploration of ensembles, such as brushing, clustering and comparison of contours on cutting planes.
+This approach is also often used when monitoring the temporal changes of a given feature, e.g., the width of a molecular tunnel~\cite{byska}.
 
 Other examples of data simplification by color encoding include heat plots and dense pixel displays~\cite{byska,ivanisiev,zhai}. 
 In combination with interactive options such as thresholding, filtering, and data reorganization, they are very effective in discovering data relationships.
+
+Related to this approaches are also similarity matrices that encode the similarity between many objects. Haidacher et al.~\cite{haidacher2011volume} introduce similarity matrices as a means for investigation of multimodal volume data sets based on isosurfaces computed with different iso-values. The similarity information can be exploited for selection of specific features and comparison of corresponding isosurfaces.
 
 \subsection{Visual Analysis for Mesh Comparison}
 The techniques mentioned above are usable as standalone methods for exploration of 3D data.
@@ -539,7 +544,7 @@ Finally, concerning the cross sections, it was suggested to add the option of di
 
 \section{Acknowledgements}
 \label{ackno}
-TODO!!!!!
+This work was supported through the project for financial support of research MUNI/A/1219/2016 and MUNI/A/1379/2015.
 
 %\section{}
 %\label{}
