@@ -272,12 +272,31 @@ Schmidt et al.~\cite{ymca} introduced a toolbox for mesh comparison.
 Their tool detects hotspots -- places with the biggest variability, and consists of several interconnected visualizations, such as color maps, lens view, and parallel coordinates view for comparison of meshes at detected hotspots.
 The tool is limited only to many-to-one mesh comparison scenario.
 
-Silva et al.~\cite{Silva2005} published their PolyMeCo tool for comparing polygonal meshes. 
-This tool focuses on the presentation of the compared meshes but, similarly to the other existing approaches, it uses the color map with the rainbow coloring scheme to convey the differences.
-
 Stalling et al.~\cite{stalling200538} offered another tool dedicated to visual data analysis, targeting the general field of life sciences. 
 It supports wide range of tasks, such as image segmentation, geometry reconstruction, flow visualizations, or statistical data analysis.
 However, despite its broad scope, it does not address some field specific tasks of forensic anthropology, such as feature detection.
+
+Silva et al.~\cite{Silva2005} published their PolyMeCo tool for comparing polygonal meshes. 
+This tool focuses on the presentation of the compared meshes but, similarly to the other existing approaches, it uses the color map with the rainbow coloring scheme to convey the differences.
+
+\subsection{Mesh Processing and Comparison Tools}
+Aside from visual analysis tools, there is a wide field of applications dedicated to 3D mesh processing and comparison.
+The following are three applications used by anthropologists prior to our tool.
+
+GOM Inspect~\cite{GOMInsp} is an application that allows easy editing of meshes, such as trimming and hole filling. Moreover, it provides tools for pairwise alignment of meshes as well as pairwise surface distance computation. 
+However, the algorithms used for this tasks are not documented, which is a major drawback for anthropologists. 
+The software also provides a possibility to compare cross-cuts of meshes. 
+The differences between meshes are displayed via color maps with rainbow coloring scheme.
+
+Cignoni et al.~\cite{meshlab} presented MeshLab, another tool used by anthropologists mostly for mesh preprocessing prior analysis. 
+It provides several algorithms for mesh alignment. However, it is not applicable for mesh comparison.
+
+CloudCompare~\cite{CCompare} is a software tool directly targeting mesh comparison. 
+This tool offers variety of alignment and comparison algorithms. however the visual representation again relies on basic color maps on surface.
+
+In summary, these applications offer range of tools for preprocessing and mesh alignment, but are very limited when it comes to mesh comparison and analysis. 
+They comparison is based on pairwise principle, which is limiting for large sets of data. 
+Moreover, these tools rely only on color maps for visual representation of results.
 
 %-------------------------------------------------------------------------
 \section{AnthroVis Design Rationale} \label{overview}
@@ -298,7 +317,7 @@ This is done automatically, using the scaling variant of Iterative Closest Point
 The ICP algorithm is based on vertex to vertex matching of input meshes and  minimizing their distance.
 The results of this approach are highly dependent on resolution of input meshes.
 Alternative is a variant with vertex to nearest point on mesh search which is computationally heavier, but provides more precise results.
-The usage of non-rigid transformations of scaling ICP algorithm is optional for domain experts, as these transformations could eliminate important information from the data, e.g., scaling could interfere with size changes when analyzing facial development of growing child.
+The usage of non-rigid transformations in ICP algorithm is optional for domain experts, as these transformations could eliminate important information from the data, e.g., scaling could interfere with size changes when analyzing facial development of growing child.
 The alignment represents an important step in the data analysis, as it directly affects its outcome.
 However, anomalies in the data may cause undesirable distortions of results. 
 As erroneous performance at this stage may lead to failure of the entire analysis, the verification of alignment and normalization results is imperative.
@@ -370,9 +389,17 @@ To better perceive the variability in the input dataset, the matrix is also acco
 The N:N overview matrix is further extended by the color map view displaying the average mesh computed from the input dataset. 
 This view helps the user to localize the areas with significant differences directly on the mesh.
 The average mesh is computed in the following way.
-For each vertex of a user selected reference mesh (one mesh from the analyzed dataset), the nearest points on surface of other meshes are found.
-Then, a displacement vector is computed from all vectors between the corresponding vertices from the reference mesh and the remaining meshes from the dataset and the reference mesh is modified by the displacement vectors.
-This process is repeated iteratively to yield better results and the number of iterations can be defined by the user.
+For each vertex of a user selected reference mesh (one mesh from the analyzed dataset), the nearest points on surfaces of other meshes are found.
+Then, a displacement vector is computed from all vectors between the corresponding points from the reference mesh and the remaining meshes from the dataset and the reference mesh is modified by the displacement vectors.
+This process is repeated iteratively to yield better results and the number of iterations can be defined by the user. Figure~\ref{fig:average} illustrates one iteration of average mesh computation.
+
+\begin{figure}[htb]
+	\centering
+  \includegraphics[width=0.9\linewidth]{pictures/average.pdf}
+  \caption{\label{fig:average} Computation of average mesh: (a) Reference mesh (red) aligned with two other meshes to be averaged. (b,c) Displacement vectors computed between reference mesh and the other meshes. (d) Averaged displacement vectors and the new averaged mesh (blue). (e) Averaged mesh aligned with other meshes.}
+	\vspace{-3mm}
+\end{figure}
+
 The color assigned to each vertex of the average mesh is then computed from the distance to its corresponding vertices in the same way as the values in the N:N overview matrix.
 
 \begin{figure*}[htb]
@@ -541,8 +568,9 @@ Furthermore, we proposed an interactive visual analysis tool integrating all pro
 The tool as well as the visualizations were tested on real cases and confronted with the currently available techniques. 
 The preliminary testing aimed to count pros and cons of the traditional color map approach, and then the newly proposed visualization techniques were tentatively assessed by forensic anthropologists. 
 The evaluation performed by the domain experts uncovered the advantages of the proposed methods but also their drawbacks, which form possible extensions for the future work. 
-%It was suggested that the light position should not be fixed with respect to the orientation of the models in order to achieve moving shadows when the models are rotated. 
-It was suggested that the fog simulation would be more beneficial if it was viewed separately from the superimposed meshes. 
+It was revealed that global alignment of meshes is not always sufficient.
+Possibility to re-align selected areas of meshes was requested by anthropologists.
+It was also suggested that the fog simulation would be more beneficial if it was view independent. 
 Finally, concerning the cross sections, it was suggested to add the option of displaying absolute variability values, as opposed to currently used relative ones, which take into account the orientation of vectors.
 While present results shed light on usefulness of the proposed visualization techniques in the target field, a proper usability study ought to be conducted in the near future. 
 
