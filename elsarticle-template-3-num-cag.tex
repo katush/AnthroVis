@@ -223,14 +223,6 @@ Their approach uses the Hausdorff distance for the comparison.
 Similarly, also Scharnowski et al.~\cite{Scharnowski2014} presented their algorithm for comparative visualization of dynamically changing surfaces.
 Their algorithm, designed mainly for molecular surfaces, uses a deformable model approach to obtain a mapping relation between two surfaces.
 
-\begin{figure*}[tbh]
-	\centering
-  \includegraphics[width=1\linewidth]{pictures/pipeline1.png}
-  \caption{\label{fig:pipeline} Illustration of the workflow of forensic antropologists performing the comparison and exploration tasks on a input set of 3D meshes.}
-	\vspace{-2mm}
-\end{figure*}
-
-
 \subsection{Visual Surface Comparison}
 %Among the existing systems for comparison 3D data belong the 
 When comparing two surfaces, superimposition principle is often used.
@@ -299,20 +291,27 @@ They comparison is based on pairwise principle, which is limiting for large sets
 Moreover, these tools rely only on color maps for visual representation of results.
 
 %-------------------------------------------------------------------------
+\begin{figure*}[tbh]
+	\centering
+  \includegraphics[width=1\linewidth]{pictures/pipeline.pdf}
+  \caption{\label{fig:pipeline} Illustration of the workflow of forensic antropologists performing the comparison and exploration tasks on an input set of 3D meshes.}
+	\vspace{-2mm}
+\end{figure*}
+
 \section{AnthroVis Design Rationale} \label{overview}
 In this section we describe the decisions influencing the design process of the AnthroVis tool and its individual parts.
 The tool was designed in tight cooperation with the domain experts from forensic anthropology field.
 To better understand their workflow, we will start with its description.
 The workflow illustrated in Figure~\ref{fig:pipeline} deals with the tasks related to the comparison of two or more 3D meshes.
-The whole process starts with the data acquisition.
+The whole process starts with the data acquisition (Figure~\ref{fig:pipeline}a).
 
 The data are acquired by stereoscopic imaging systems which provide high-poly meshes. 
 In the subsequent preprocessing step the input meshes have to be manually processed because they can suffer from several deficiencies. 
 In case of facial meshes these deficiencies include the parts of the face surrounding, hair, and clothing.
 These parts are either insignificant to experts or they contain a distorted geometry, which is irrelevant as well. 
-Hence, the final 3D images are trimmed to demarcate the facial area only.
+Hence, the final 3D images are trimmed to demarcate the facial area only (Figure~\ref{fig:pipeline}b).
 
-The next step of the workflow performs the alignment and normalization of the meshes. 
+The next step of the workflow performs the alignment and normalization of the meshes (Figure~\ref{fig:pipeline}c). 
 This is done automatically, using the scaling variant of Iterative Closest Point algorithm~\cite{besl1992method, du2010scaling}. 
 The ICP algorithm is based on vertex to vertex matching of input meshes and  minimizing their distance.
 The results of this approach are highly dependent on resolution of input meshes.
@@ -328,7 +327,7 @@ In the process of facial image identification there are three main commonly perf
 The first group of tasks is to explore morphological variations within a set of 3D images in order to quantify the intra- or inter-population variability.
 The second group deals with matching an image against a database of images in order to screen the database and detect similar meshes.
 Finally, tasks related to matching two images in order to identify or reject the person's identity form the third group.
-From these tasks stem the three possible approaches to facial comparison -- analyzing a set of models (N:N), comparison of one model against a dataset (1:N), and comparison of two facial models (1:1). 
+From these tasks stem the three possible approaches to facial comparison -- analyzing a set of models (N:N -- Figure~\ref{fig:pipeline}d), comparison of one model against a dataset (1:N -- Figure~\ref{fig:pipeline}e), and comparison of two facial models (1:1 -- Figure~\ref{fig:pipeline}f). 
 
 In 1:1 comparison, a typical goal is to determine whether two models depict the same person. 
 Here a simple superimposition of aligned models may provide the idea leading to the success of this operation.
